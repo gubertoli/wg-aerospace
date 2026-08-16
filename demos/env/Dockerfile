@@ -22,6 +22,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
       build-essential=* \
+      bash-completion=* \
       cpio=* \
       file=* \
       git=* \
@@ -91,6 +92,7 @@ RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ubuntu \
     && chmod 0440 /etc/sudoers.d/ubuntu
 # hadolint ignore=SC2016
 RUN echo 'export PATH=/opt/ghc/8.6.5/bin:/opt/cabal/2.4/bin:/home/ubuntu/.cabal/bin/:$PATH' >> /home/ubuntu/.bashrc && \
+    echo 'if [ -f /etc/bash_completion ]; then . /etc/bash_completion; elif [ -f /usr/share/bash-completion/bash_completion ]; then . /usr/share/bash-completion/bash_completion; fi' >> /home/ubuntu/.bashrc && \
     chown -R ubuntu:ubuntu /home/ubuntu
 USER ubuntu
 WORKDIR /home/ubuntu
@@ -98,7 +100,7 @@ WORKDIR /home/ubuntu
 # Transparent uid:gid setup for manual container use
 # Moved here as the copy will always reset cached history for everything that follows
 USER root
-COPY entry.sh /entry.sh
+COPY demos/env/entry.sh /entry.sh
 RUN chmod 777 /entry.sh && chown root:root /entry.sh
 USER ubuntu
 

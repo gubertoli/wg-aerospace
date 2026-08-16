@@ -5,14 +5,15 @@
 # This file is designed to support a Docker Build on both AMD64 and ARM64
 #
 # checkov:skip=CKV_DOCKER_2: no health check
-FROM ubuntu:26.04
+FROM ubuntu:26.10
 
 # Options
 # 22.04, jammy-20260109, jammy
 # 24.04, noble-20260113, noble, latest
 # 25.04, plucky-20251001, plucky
 # 25.10, questing-20251217, questing, rolling
-# 26.04, resolute-20260106.1, resolute, devel
+# 26.04, resolute-20260724.1, resolute
+# 26.10, stonking-20260705, stonking, devel
 
 # Avoid questions during installation
 ENV DEBIAN_FRONTEND=noninteractive

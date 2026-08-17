@@ -31,7 +31,7 @@ define exec_in_env
 $(EXEC) 'cd $(RUN_CWD) && $(1)'
 endef
 
-.PHONY: default clean prep runs test test_monitors main_syslog_time_cross_stop
+.PHONY: default clean prep run test test_monitors main_syslog_time_cross_stop
 
 default: main_syslog main_syslog_local main_syslog_time
 
